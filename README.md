@@ -1,3 +1,3 @@
 # cron-calc
 
-A cron job calculator to quickly setup your cron jobs.
+An easy to use cron job calculator and identifier.
