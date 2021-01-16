@@ -21,7 +21,6 @@ const Selection = () => {
     
     return (
         <div>
-            {console.log("Current cron: ", cron)}
             <div>
                 <input type="text" name="minute" onChange={updateValue} value={cron.minute} />
                 <input type="text" name="hour" onChange={updateValue} value={cron.hour} />
