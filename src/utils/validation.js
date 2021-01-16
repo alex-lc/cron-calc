@@ -1,21 +1,32 @@
 /* Validate input when user is selecting cron job */
 
-export function validateMinutes(minutes) {
+function validateMinutes(minutes) {
+    // only wildcard should be accepted as a string
+    if (typeof minutes === "string" && minutes !== "*") {
+        return false
+    }
+    // numbers should be between 0 and 59 inclusive
+    else if (typeof minutes === "number" && (minutes < 0 || minutes > 59)) {
+        return false
+    }
+    
+    return true;
+}
+
+function validateHours(hours) {
 
 }
 
-export function validateHours(hours) {
+function validateDayOfMonth(dayOfMonth) {
 
 }
 
-export function validateDayOfMonth(dayOfMonth) {
+function validateMonth(month) {
 
 }
 
-export function validateMonth(month) {
+function validateDayOfWeek(dayOfWeek) {
 
 }
 
-export function validateDayOfWeek(dayOfWeek) {
-
-}
+console.log(validateMinutes(60))
