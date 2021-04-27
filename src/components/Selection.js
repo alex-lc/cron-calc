@@ -5,6 +5,9 @@ import { useState } from 'react'
 // data
 import { months } from '../data/data'
 
+// validation
+import { validateMonth } from '../utils/validation'
+
 const Selection = () => {
 
     const [cron, setCron] = useState({
@@ -31,17 +34,19 @@ const Selection = () => {
             }
         }
 
-        if (e.target.name === "month" && (e.target.value <= 12 && e.target.value >= 1)) {
-            console.log("Valid month. Grabbing month...")
-            console.log(`You selected ${months[e.target.value]}!`)
-
-            setCron({
-                ...cron,
-                [e.target.name]: e.target.value
-            })
-        }
-        else {
-            console.log("Invalid month. It must be between 1 and 12.")
+        // validate month input
+        if (e.target.name === "month") {
+            let status = validateMonth(e.target.value)
+            
+            if (status !== false) {
+                setCron({
+                    ...cron,
+                    [e.target.name]: e.target.value
+                })
+            }
+            else {
+                console.log("Please enter a valid month.")
+            }
         }
         // setCron({
         //     ...cron,

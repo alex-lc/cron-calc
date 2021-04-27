@@ -24,12 +24,23 @@ function validateDayOfMonth(dayOfMonth) {
 
 }
 
-function validateMonth(month) {
+export function validateMonth(month) {
+    if (month.length < 2) {
+        if (Number(month) <= 9 && Number(month) >= 1) {
+            let formatMonth = "0" + month
+            
+            return formatMonth
+        }
+    }
+    if (month.length === 2) {
+      if (Number(month) <= 12) {
+        return month
+      }
+    }
 
+    return false
 }
 
 function validateDayOfWeek(dayOfWeek) {
 
 }
-
-console.log(validateMinutes(60))
