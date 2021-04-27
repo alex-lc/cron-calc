@@ -25,13 +25,18 @@ function validateDayOfMonth(dayOfMonth) {
 }
 
 export function validateMonth(month) {
-    if (month.length < 2) {
-        if (Number(month) <= 9 && Number(month) >= 1) {
-            let formatMonth = "0" + month
-            
-            return formatMonth
+    // a single digit month is entered
+    if (month.length === 1 && (Number(month) >= 1 && Number(month) <= 9)) {
+        return month
+    }
+    // a double digit month is entered with a leading 0 - 01-09
+    if (month.length === 2 && month[0] === "0") {
+        console.log("We have a leading 0.")
+        if (Number(month[1]) <= 9 && Number(month[1] >= 1)) {
+            return month[1]
         }
     }
+    // a double digit month is entered - 10-12
     if (month.length === 2) {
       if (Number(month) <= 12) {
         return month

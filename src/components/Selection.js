@@ -39,19 +39,17 @@ const Selection = () => {
             let status = validateMonth(e.target.value)
             
             if (status !== false) {
+                let m = months[status]
+                console.log("M: ", m)
                 setCron({
                     ...cron,
-                    [e.target.name]: e.target.value
+                    [e.target.name]: m
                 })
             }
             else {
                 console.log("Please enter a valid month.")
             }
         }
-        // setCron({
-        //     ...cron,
-        //     [e.target.name]: e.target.value
-        // })
     }
 
     const submitCron = (data) => {
