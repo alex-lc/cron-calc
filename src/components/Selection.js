@@ -48,6 +48,10 @@ const Selection = () => {
             }
             else {
                 console.log("Please enter a valid month.")
+                setCron({
+                    ...cron,
+                    [e.target.name]: '!'
+                })
             }
         }
     }
