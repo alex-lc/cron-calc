@@ -76,8 +76,8 @@ const Selection = () => {
                     {cron.dayOfTheMonth === 0 && <p>no day of the month</p>}
                     {cron.dayOfTheMonth !== 0 && <p>{cron.dayOfTheMonth}</p>}
 
-                    {cron.month === 0 && <p>no month selected</p>}
-                    {cron.month !== 0 && <p>{cron.month}</p>}
+                    {cron.month === 0 && <p>*</p>}
+                    {cron.month !== 0 && <p>in {cron.month}</p>}
 
                     {cron.dayOfTheWeek === 0 && <p>no day of the week</p>}
                     {cron.dayOfTheWeek !== 0 && <p>{cron.dayOfTheWeek}</p>}
