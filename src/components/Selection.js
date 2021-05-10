@@ -6,31 +6,37 @@ import { useState } from 'react'
 import { months } from '../data/data'
 
 // validation
-import { validateMonth } from '../utils/validation'
+import { validateMonth, validateMinutes } from '../utils/validation'
 
 const Selection = () => {
 
     const [cron, setCron] = useState({
-        minute: 0,
-        hour: 0,
-        dayOfTheMonth: 0,
-        month: 0,
-        dayOfTheWeek: 0
+        minute: "*",
+        hour: "*",
+        dayOfTheMonth: "*",
+        month: "*",
+        dayOfTheWeek: "*"
     })
 
     const updateValue = (e) => {
         if (e.target.name === "minute") {
             console.log("Editing minute field...")
 
-            if (e.target.value > 59) {
-                console.log("Invalid value. It cannot be greater than 59.")
+            let status = validateMinutes(e.target.value)
+
+            if (status !== false) {
+                console.log("Valid minute entered.")
                 setCron({
                     ...cron,
                     [e.target.name]: e.target.value
                 })
             }
             else {
-                console.log("Valid minute value: " + e.target.value)
+                console.log("Please enter a valid minute.")
+                setCron({
+                    ...cron,
+                    [e.target.name]: false
+                })
             }
         }
 
@@ -67,8 +73,9 @@ const Selection = () => {
         <div>
             <div>
                 <div>
-                    {cron.minute === 0 && <p>0 minute</p>}
-                    {cron.minute !== 0 && <p>{cron.minute} minutes</p>}
+                    {cron.minute !== false && cron.minute !== "*" && <p>At minute {cron.minute}</p>}
+                    {cron.minute === "*" || cron.minute === "" && <p>*</p>}
+                    {cron.minute === false && <p>!</p>}
 
                     {cron.hour === 0 && <p>0 hour</p>}
                     {cron.hour !== 0 && <p>{cron.hour} hour</p>}

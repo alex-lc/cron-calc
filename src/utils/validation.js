@@ -1,17 +1,16 @@
 /* Validate input when user is selecting cron job */
 
-function validateMinutes(minutes) {
+export function validateMinutes(minutes) {
     let step = false
   
     if (minutes.includes("/") === true) {
       step = true
-      console.log("Includes step values")
     }
     else {
       if (minutes !== "*") {
         let num = Number(minutes)
   
-        if ((num <= 59 && num >= 1)) {
+        if ((num <= 59 && num >= 0)) {
           return num
         }
       }
