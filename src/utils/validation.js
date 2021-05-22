@@ -1,19 +1,26 @@
 /* Validate input when user is selecting cron job */
 
-function validateMinutes(minutes) {
-
-    let allowedStringValues = ["*", "/", ","]
-    
-    // only wildcard should be accepted as a string
-    if (typeof minutes === "string") {
-        // string value combos
+export function validateMinutes(minutes) {
+    let step = false
+  
+    if (minutes.includes("/") === true) {
+      step = true
     }
-    // numbers should be between 0 and 59 inclusive
-    else if (typeof minutes === "number" && (minutes < 0 || minutes > 59)) {
-        return false
+    else {
+      if (minutes !== "*") {
+        let num = Number(minutes)
+  
+        if ((num <= 59 && num >= 0)) {
+          return num
+        }
+      }
+      
+      if (minutes === "*") {
+        return minutes
+      }
+  
+      return false
     }
-    
-    return true;
 }
 
 function validateHours(hours) {
