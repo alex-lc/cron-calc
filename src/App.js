@@ -3,7 +3,7 @@ import Selection from './components/Selection'
 
 function App() {
   return (
-    <div>
+    <div className="container mx-auto bg-black">
       <Selection />
     </div>
   )
