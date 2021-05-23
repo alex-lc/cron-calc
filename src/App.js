@@ -3,7 +3,7 @@ import Selection from './components/Selection'
 
 function App() {
   return (
-    <div className="container mx-auto bg-black">
+    <div className="flex justify-center items-center w-full h-screen bg-black">
       <Selection />
     </div>
   )

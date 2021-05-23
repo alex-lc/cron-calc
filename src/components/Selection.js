@@ -71,7 +71,7 @@ const Selection = () => {
     
     return (
         <div className="flex flex-col bg-purple-900 text-white">
-                <div>
+                <div className="flex justify-evenly">
                     {cron.minute !== false && cron.minute !== "*" && <p>At minute {cron.minute}</p>}
                     {cron.minute === "*" || cron.minute === "" && <p>*</p>}
                     {cron.minute === false && <p>!</p>}
@@ -88,7 +88,7 @@ const Selection = () => {
                     {cron.dayOfTheWeek === 0 && <p>no day of the week</p>}
                     {cron.dayOfTheWeek !== 0 && <p>{cron.dayOfTheWeek}</p>}
                 </div>
-                <div className="container mx-auto bg-purple-50">
+                <div className="flex justify-evenly bg-purple-50">
                     <form>
                         <div className="flex">
                             <input type="text" name="minute" onChange={updateValue} placeholder="*" />
@@ -97,7 +97,9 @@ const Selection = () => {
                             <input type="text" name="month" onChange={updateValue} placeholder="*" />
                             <input type="text" name="dayOfTheWeek" onChange={updateValue} placeholder="*" />
                         </div>
-                        <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="submit">CRON</button>
+                        <div className="flex justify-center py-3">
+                            <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="submit">CRON</button>
+                        </div>
                     </form>
                 </div>
         </div>
