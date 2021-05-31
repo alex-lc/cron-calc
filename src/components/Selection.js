@@ -1,6 +1,7 @@
 // Input for setting up cron job
 
-import { useState } from 'react'
+import { round } from 'lodash'
+import { useState, useEffect } from 'react'
 
 // data
 import { months } from '../data/data'
@@ -11,12 +12,50 @@ import { validateMonth, validateMinutes } from '../utils/validation'
 const Selection = () => {
 
     const [cron, setCron] = useState({
-        minute: "*",
-        hour: "*",
-        dayOfTheMonth: "*",
-        month: "*",
-        dayOfTheWeek: "*"
+        minute: "",
+        hour: "",
+        dayOfTheMonth: "",
+        month: "",
+        dayOfTheWeek: ""
     })
+
+    useEffect(() => {
+        // default fields to every (*) if they are empty
+        if (cron.minute === "") {
+            setCron({
+                ...cron,
+                minute: "*"
+            })
+        }
+
+        if (cron.hour === "") {
+            setCron({
+                ...cron,
+                hour: "*"
+            })
+        }
+
+        if (cron.dayOfTheMonth === "") {
+            setCron({
+                ...cron,
+                dayOfTheMonth: "*"
+            })
+        }
+
+        if (cron.month === "") {
+            setCron({
+                ...cron,
+                month: "*"
+            })
+        }
+
+        if (cron.dayOfTheWeek === "") {
+            setCron({
+                ...cron,
+                dayOfTheWeek: "*"
+            })
+        }
+    }, [cron])
 
     const updateValue = (e) => {
         if (e.target.name === "minute") {
@@ -43,14 +82,28 @@ const Selection = () => {
         // validate month input
         if (e.target.name === "month") {
             let status = validateMonth(e.target.value)
+            let m;
+
+            console.log(`Status equals: ${status}`)
             
             if (status !== false) {
-                let m = months[status]
-                console.log("M: ", m)
-                setCron({
-                    ...cron,
-                    [e.target.name]: m
-                })
+                if (status !== "") {
+                    m = months[status]
+                    console.log("M: ", m)
+
+                    setCron({
+                        ...cron,
+                        [e.target.name]: m
+                    })
+                }
+                else {
+                    m = ""
+
+                    setCron({
+                        ...cron,
+                        [e.target.name]: m
+                    })
+                }
             }
             else {
                 console.log("Please enter a valid month.")
@@ -72,24 +125,23 @@ const Selection = () => {
     return (
         <div className="flex flex-col bg-purple-900 text-white">
                 <div className="flex justify-evenly">
-                    {cron.minute !== false && cron.minute !== "*" && <p>At minute {cron.minute}</p>}
-                    {cron.minute === "*" || cron.minute === "" && <p>*</p>}
-                    {cron.minute === false && <p>!</p>}
+                    {cron.minute !== "" && cron.minute !== "*" && <p>{cron.minute} minute</p>}
+                    {cron.minute === "*" && <p>Every minute</p>}
 
-                    {cron.hour === 0 && <p>0 hour</p>}
-                    {cron.hour !== 0 && <p>{cron.hour} hour</p>}
+                    {cron.hour !== "" && cron.hour !== "*" && <p>{cron.hour} hour</p>}
+                    {cron.hour === "*" && <p>Every hour</p>}
 
-                    {cron.dayOfTheMonth === 0 && <p>no day of the month</p>}
-                    {cron.dayOfTheMonth !== 0 && <p>{cron.dayOfTheMonth}</p>}
+                    {cron.dayOfTheMonth !== "" && cron.dayOfTheMonth !== "*" && <p>{cron.dayOfTheMonth} month</p>}
+                    {cron.dayOfTheMonth === "*" && <p>Every day of the month</p>}
 
-                    {cron.month === 0 && <p>*</p>}
-                    {cron.month !== 0 && <p>in {cron.month}</p>}
+                    {cron.month !== "" && cron.month !== "*" && <p>{cron.month} month</p>}
+                    {cron.month === "*" && <p>Every month</p>}
 
-                    {cron.dayOfTheWeek === 0 && <p>no day of the week</p>}
-                    {cron.dayOfTheWeek !== 0 && <p>{cron.dayOfTheWeek}</p>}
+                    {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && <p>{cron.dayOfTheWeek} day</p>}
+                    {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
                 </div>
                 <div className="flex justify-evenly bg-purple-50">
-                    <form>
+                    <form className="text-black">
                         <div className="flex">
                             <input type="text" name="minute" onChange={updateValue} placeholder="*" />
                             <input type="text" name="hour" onChange={updateValue} placeholder="*" />

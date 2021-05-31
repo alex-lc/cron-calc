@@ -33,8 +33,9 @@ function validateDayOfMonth(dayOfMonth) {
 
 export function validateMonth(month) {
     // default *
-    if (month === '*') {
+    if (month === "*" || month === "") {
         console.log("Asterisk identified successfully.")
+        console.log(`Month is ${month}`)
         return month
     }
     // a single digit month is entered
