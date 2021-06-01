@@ -1,6 +1,5 @@
 // Input for setting up cron job
 
-import { round } from 'lodash'
 import { useState, useEffect } from 'react'
 
 // data
