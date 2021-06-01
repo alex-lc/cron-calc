@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { months } from '../data/data'
 
 // validation
-import { validateMonth, validateMinutes } from '../utils/validation'
+import { validateMonth, validateMinutes, validateHours } from '../utils/validation'
 
 const Selection = () => {
 
@@ -71,6 +71,28 @@ const Selection = () => {
             }
             else {
                 console.log("Please enter a valid minute.")
+                setCron({
+                    ...cron,
+                    [e.target.name]: false
+                })
+            }
+        }
+
+        // validate hours input
+        if (e.target.name === "hour") {
+            console.log("Editing hour field...")
+
+            let status = validateHours(e.target.value)
+
+            if (status !== false) {
+                console.log("Valid hour entered.")
+                setCron({
+                    ...cron,
+                    [e.target.name]: e.target.value
+                })
+            }
+            else {
+                console.log("Please enter a valid hour.")
                 setCron({
                     ...cron,
                     [e.target.name]: false

@@ -23,8 +23,20 @@ export function validateMinutes(minutes) {
     }
 }
 
-function validateHours(hours) {
+export function validateHours(hours) {
+  // a valid hour between 0 and 24
+  if (Number(hours) >= 0 || Number(hours) <= 23) {
+    return hours
+  } 
+  // a double digit month is entered with a leading 0 - 01-09
+  if (hours.length === 2 && hours[0] === "0") {
+    console.log("We have a leading 0.")
+    if (Number(hours[1]) <= 9 && Number(hours[1] >= 1)) {
+        return hours[1]
+    }
+  }
 
+  return false
 }
 
 function validateDayOfMonth(dayOfMonth) {
