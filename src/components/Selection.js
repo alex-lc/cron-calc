@@ -144,7 +144,7 @@ const Selection = () => {
     }
     
     return (
-        <div className="flex flex-col bg-purple-900 text-white">
+        <div className="flex flex-col bg-gray-100 text-white border border-blue-100 rounded">
                 <div className="flex justify-evenly">
                     {cron.minute !== "" && cron.minute !== "*" && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
@@ -161,16 +161,26 @@ const Selection = () => {
                     {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && <p>{cron.dayOfTheWeek} day</p>}
                     {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
                 </div>
-                <div className="flex justify-evenly bg-purple-50">
+                <div className="flex justify-evenly py-5 px-5">
                     <form className="text-black">
                         <div className="flex">
-                            <input type="text" name="minute" onChange={updateValue} placeholder="*" />
-                            <input type="text" name="hour" onChange={updateValue} placeholder="*" />
-                            <input type="text" name="dayOfTheMonth" onChange={updateValue} placeholder="*" />
-                            <input type="text" name="month" onChange={updateValue} placeholder="*" />
-                            <input type="text" name="dayOfTheWeek" onChange={updateValue} placeholder="*" />
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" name="minute" onChange={updateValue} placeholder="*" />
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" name="hour" onChange={updateValue} placeholder="*" />
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" name="dayOfTheMonth" onChange={updateValue} placeholder="*" />
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" name="month" onChange={updateValue} placeholder="*" />
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" name="dayOfTheWeek" onChange={updateValue} placeholder="*" />
                         </div>
-                        <div className="flex justify-center py-3">
+                        <div className="flex justify-center bg-blue-100 py-3">
                             <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="submit">CRON</button>
                         </div>
                     </form>
