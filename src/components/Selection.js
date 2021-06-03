@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { months } from '../data/data'
 
 // validation
-import { validateMonth, validateMinutes, validateHours } from '../utils/validation'
+import { validateMonth, validateMinutes, validateHours, validateDayOfMonth } from '../utils/validation'
 
 const Selection = () => {
 
@@ -57,8 +57,8 @@ const Selection = () => {
     }, [cron])
 
     const updateValue = (e) => {
+        // validate minutes input
         if (e.target.name === "minute") {
-            console.log("Editing minute field...")
 
             let status = validateMinutes(e.target.value)
 
@@ -70,7 +70,6 @@ const Selection = () => {
                 })
             }
             else {
-                console.log("Please enter a valid minute.")
                 setCron({
                     ...cron,
                     [e.target.name]: false
@@ -80,19 +79,35 @@ const Selection = () => {
 
         // validate hours input
         if (e.target.name === "hour") {
-            console.log("Editing hour field...")
 
             let status = validateHours(e.target.value)
 
             if (status !== false) {
-                console.log("Valid hour entered.")
                 setCron({
                     ...cron,
                     [e.target.name]: e.target.value
                 })
             }
             else {
-                console.log("Please enter a valid hour.")
+                setCron({
+                    ...cron,
+                    [e.target.name]: false
+                })
+            }
+        }
+
+        // validate dayOfTheMonth input
+        if (e.target.name === "dayOfTheMonth") {
+
+            let status = validateDayOfMonth(e.target.value)
+
+            if (status !== false) {
+                setCron({
+                    ...cron,
+                    [e.target.name]: e.target.value
+                })
+            }
+            else {
                 setCron({
                     ...cron,
                     [e.target.name]: false
@@ -105,8 +120,6 @@ const Selection = () => {
             let status = validateMonth(e.target.value)
             let m;
 
-            console.log(`Status equals: ${status}`)
-            
             if (status !== false) {
                 if (status !== "") {
                     m = months[status]
@@ -130,7 +143,7 @@ const Selection = () => {
                 console.log("Please enter a valid month.")
                 setCron({
                     ...cron,
-                    [e.target.name]: '!'
+                    [e.target.name]: false
                 })
             }
         }
@@ -146,17 +159,21 @@ const Selection = () => {
     return (
         <div className="flex flex-col w-4/5 bg-blue-100 text-white border border-blue-100 rounded">
                 <div className="flex justify-evenly bg-blue-900 text-white py-5 mb-5 rounded-t">
-                    {cron.minute !== "" && cron.minute !== "*" && <p>{cron.minute} minute</p>}
+                    {cron.minute !== "" && cron.minute !== "*" && cron.minute !== false && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
+                    {cron.minute === false && <p>INVALID!</p>}
 
-                    {cron.hour !== "" && cron.hour !== "*" && <p>{cron.hour} hour</p>}
+                    {cron.hour !== "" && cron.hour !== "*" && cron.hour !== false && <p>{cron.hour} hour</p>}
                     {cron.hour === "*" && <p>Every hour</p>}
+                    {cron.hour === false && <p>INVALID!</p>}
 
-                    {cron.dayOfTheMonth !== "" && cron.dayOfTheMonth !== "*" && <p>{cron.dayOfTheMonth} month</p>}
+                    {cron.dayOfTheMonth !== "" && cron.dayOfTheMonth !== "*" && cron.dayOfTheMonth !== false && <p>{cron.dayOfTheMonth} month</p>}
                     {cron.dayOfTheMonth === "*" && <p>Every day of the month</p>}
+                    {cron.dayOfTheMonth === false && <p>INVALID!</p>}
 
-                    {cron.month !== "" && cron.month !== "*" && <p>{cron.month} month</p>}
+                    {cron.month !== "" && cron.month !== "*" && cron.month !== false && <p>{cron.month} month</p>}
                     {cron.month === "*" && <p>Every month</p>}
+                    {cron.month === false && <p>INVALID!</p>}
 
                     {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && <p>{cron.dayOfTheWeek} day</p>}
                     {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
