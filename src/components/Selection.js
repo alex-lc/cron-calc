@@ -144,8 +144,8 @@ const Selection = () => {
     }
     
     return (
-        <div className="flex flex-col bg-gray-100 text-white border border-blue-100 rounded">
-                <div className="flex justify-evenly">
+        <div className="flex flex-col w-4/5 bg-blue-100 text-white border border-blue-100 rounded">
+                <div className="flex justify-evenly bg-blue-900 text-white py-5 mb-5 rounded-t">
                     {cron.minute !== "" && cron.minute !== "*" && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
 
@@ -161,9 +161,9 @@ const Selection = () => {
                     {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && <p>{cron.dayOfTheWeek} day</p>}
                     {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
                 </div>
-                <div className="flex justify-evenly py-5 px-5">
-                    <form className="text-black">
-                        <div className="flex">
+                <div className="flex justify-evenly w-full">
+                    <form className="text-black w-full flex-col content-evenly px-2">
+                        <div className="grid grid-cols-5 gap-2">
                             <input 
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="text" name="minute" onChange={updateValue} placeholder="*" />
