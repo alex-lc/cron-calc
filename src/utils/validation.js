@@ -77,6 +77,21 @@ export function validateMonth(month) {
     return false
 }
 
-function validateDayOfWeek(dayOfWeek) {
+export function validateDayOfWeek(dayOfWeek) {
+  // default * or empty
+  if (dayOfWeek === "*" || dayOfWeek === "") {
+    return dayOfWeek
+  }
+  // a valid single digit day is entered
+  if (Number(dayOfWeek) >= 0 && Number(dayOfWeek) <= 6) {
+    return dayOfWeek
+  }
+  // a double digit month is entered with a leading 0 - 01-09
+  if (dayOfWeek.length === 2 && dayOfWeek[0] === "0") {
+    if (Number(dayOfWeek[1]) <= 6 && Number(dayOfWeek[1]) >= 0) {
+        return dayOfWeek[1]
+    }
+  }  
 
+  return false
 }

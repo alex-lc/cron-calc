@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { months } from '../data/data'
 
 // validation
-import { validateMonth, validateMinutes, validateHours, validateDayOfMonth } from '../utils/validation'
+import { validateMonth, validateMinutes, validateHours, validateDayOfMonth, validateDayOfWeek } from '../utils/validation'
 
 const Selection = () => {
 
@@ -147,6 +147,24 @@ const Selection = () => {
                 })
             }
         }
+
+        // validate day of week input
+        if (e.target.name === "dayOfTheWeek") {
+            let status = validateDayOfWeek(e.target.value)
+
+            if (status !== false) {
+                setCron({
+                    ...cron,
+                    [e.target.name]: e.target.value
+                })
+            }
+            else {
+                setCron({
+                    ...cron,
+                    [e.target.name]: false
+                })
+            }
+        }
     }
 
     const submitCron = (data) => {
@@ -175,8 +193,10 @@ const Selection = () => {
                     {cron.month === "*" && <p>Every month</p>}
                     {cron.month === false && <p>INVALID!</p>}
 
-                    {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && <p>{cron.dayOfTheWeek} day</p>}
+                    {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && cron.dayOfTheWeek !== false && <p>{cron.dayOfTheWeek} day</p>}
                     {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
+                    {cron.dayOfTheWeek === false && <p>INVALID!</p>}
+
                 </div>
                 <div className="flex justify-evenly w-full">
                     <form className="text-black w-full flex-col content-evenly px-2">
