@@ -188,7 +188,7 @@ const Selection = () => {
     }
     
     return (
-        <div className="flex flex-col w-4/5 bg-blue-100 text-white border border-blue-100 rounded">
+        <div className="flex flex-col w-full bg-blue-100 text-white border border-blue-100 rounded pb-5">
                 <div className="flex justify-evenly bg-blue-900 text-white py-5 mb-5 rounded-t">
                     {cron.minute !== "" && cron.minute !== "*" && cron.minute !== false && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
@@ -230,9 +230,11 @@ const Selection = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="text" name="dayOfTheWeek" onChange={updateValue} placeholder="*" />
                         </div>
-                        <div className="flex justify-center bg-blue-100 py-3">
+
+                        {/* Do we even want a button? */}
+                        {/* <div className="flex justify-center bg-blue-100 py-3">
                             <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="submit">CRON</button>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
         </div>
