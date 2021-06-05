@@ -8,6 +8,9 @@ import { months, daysOfWeek } from '../data/data'
 // validation
 import { validateMonth, validateMinutes, validateHours, validateDayOfMonth, validateDayOfWeek } from '../utils/validation'
 
+// components
+import Cron from './Cron'
+
 const Selection = () => {
 
     const [cron, setCron] = useState({
@@ -190,6 +193,9 @@ const Selection = () => {
     return (
         <div className="flex flex-col w-full bg-blue-100 text-white border border-blue-100 rounded pb-5">
                 <div className="flex justify-evenly bg-blue-900 text-white py-5 mb-5 rounded-t">
+
+                    <Cron minute={cron.minute} hour={cron.hour} dayOfTheMonth={cron.dayOfTheMonth} month={cron.month} dayOfTheWeek={cron.dayOfTheWeek} />
+
                     {cron.minute !== "" && cron.minute !== "*" && cron.minute !== false && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
                     {cron.minute === false && <p>INVALID!</p>}
