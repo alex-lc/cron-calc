@@ -196,7 +196,7 @@ const Selection = () => {
 
                     <Cron minute={cron.minute} hour={cron.hour} dayOfTheMonth={cron.dayOfTheMonth} month={cron.month} dayOfTheWeek={cron.dayOfTheWeek} />
 
-                    {cron.minute !== "" && cron.minute !== "*" && cron.minute !== false && <p>{cron.minute} minute</p>}
+                    {/* {cron.minute !== "" && cron.minute !== "*" && cron.minute !== false && <p>{cron.minute} minute</p>}
                     {cron.minute === "*" && <p>Every minute</p>}
                     {cron.minute === false && <p>INVALID!</p>}
 
@@ -214,7 +214,7 @@ const Selection = () => {
 
                     {cron.dayOfTheWeek !== "" && cron.dayOfTheWeek !== "*" && cron.dayOfTheWeek !== false && <p>on {cron.dayOfTheWeek}</p>}
                     {cron.dayOfTheWeek === "*" && <p>Every day of the week</p>}
-                    {cron.dayOfTheWeek === false && <p>INVALID!</p>}
+                    {cron.dayOfTheWeek === false && <p>INVALID!</p>} */}
 
                 </div>
                 <div className="flex justify-evenly w-full">
