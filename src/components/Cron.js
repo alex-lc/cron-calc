@@ -15,19 +15,21 @@ export default function Cron({ minute, hour, dayOfTheMonth, month, dayOfTheWeek 
         )
     }
     else if (minute === "*" || hour === "*") {
-        return (
-            <div>
-                {minute === "*" ? `Every minute` : `At minute ${minute}` }
+        if (minute !== "*" && hour === "*") {
+            return (
+                <div>
+                    At minute {minute} on day of month {dayOfTheMonth} and on {dayOfTheWeek} in {month}
+                </div>
+            )
+        }
 
-                {hour === "*" ? ` every hour` : ` past hour ${hour}`}
-
-                {dayOfTheMonth === "*" ? ` every day` : ` on day of month ${dayOfTheMonth}`}
-
-                {dayOfTheWeek === "*" ? null : ` and on ${dayOfTheWeek}`}
-
-                {month === "*" ? ` of every month` : ` in ${month}`}
-            </div>
-        )
+        if (minute === "*" && hour !== "*") {
+            return (
+                <div>
+                    Every minute past hour {hour} on day of month {dayOfTheMonth} and on {dayOfTheWeek} in {month}
+                </div>
+            )
+        }
     }
 
     if (minute === "*" && hour === "*" && dayOfTheMonth === "*" && month === "*" && dayOfTheWeek === "*") {
