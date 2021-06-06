@@ -32,10 +32,22 @@ export default function Cron({ minute, hour, dayOfTheMonth, month, dayOfTheWeek 
 
         if (minute === "*" && hour !== "*") {
             setHourString(` hour ${hour}`)
+
+            if (dayOfTheMonth === "*") { setDayOfTheMonthString("") }
+
+            if (dayOfTheWeek === "*") { setDayOfTheWeekString("") }
+
+            if (month === "*") { setMonthString("") }
         }
 
         if (hour === "*" && minute !== "*") {
             setMinuteString(`At minute ${minute}`)
+
+            if (dayOfTheMonth === "*") { setDayOfTheMonthString("") }
+
+            if (dayOfTheWeek === "*") { setDayOfTheWeekString("") }
+
+            if (month === "*") { setMonthString("") }
         }
     }, [minute, hour, dayOfTheMonth, dayOfTheWeek, month])
 
